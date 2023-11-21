@@ -37,8 +37,8 @@ function sleep(ms) {
 function isOutofBounds(HEIGHT, WIDTH, player) {
 	let playerHead = player.playerBody[0];
 	let ids = playerHead.split("/").slice(1);
-	if ((ids[0] > HEIGHT) ||
-		(ids[1] > WIDTH) ||
+	if ((ids[0] >= HEIGHT) ||
+		(ids[1] >= WIDTH) ||
 		(ids[0] < 0) ||
 		(ids[1] < 0) ||
 		(player.playerBody.slice(1).includes(playerHead))) {
