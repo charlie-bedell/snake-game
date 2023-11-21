@@ -1,4 +1,4 @@
-import { randNum, draw } from './util.js';
+import { randNum } from './util.js';
 
 function createCell(id) {
 	let cell = document.createElement("div");
@@ -24,20 +24,6 @@ function createBoard(x, y) {
 
 function getCell(id) {
 	return document.querySelector(`#${id}`);
-}
-
-function getCellNeighbors(id, x, y) {
-	let idxy = id.split('/').slice(1);
-	let xid = Number(idxy[0]);
-	let yid = Number(idxy[1]);
-	let neighbors = [
-		`cell/${xid + 1}/${yid}`,
-		`cell/${xid - 1}/${yid}`,
-		`cell/${xid}/${yid + 1}`,
-		`cell/${xid}/${yid - 1}`
-	];
-	let valid_neighbors = neighbors.filter((n) => isValidCell(n, x, y));
-	return valid_neighbors;
 }
 
 function boardCenterId(x, y) {
