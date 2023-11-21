@@ -66,7 +66,9 @@ async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
     if (player.playerBody[0] == apple) {
       player.grow();
       apple = newApple(player, HEIGHT, WIDTH);
+      document.getElementById("score-counter").innerText = String(player.playerLength - 1);
     }
+    
 		drawPlayer(player);
     draw(apple, "orange");
 		await sleep(tickSpeed);
