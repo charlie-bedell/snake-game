@@ -46,24 +46,14 @@ function isValidCell(id, x, y) {
 	}
 }
 
-
-
-
 function newApple(player,x,y) {
-  let playerIds = player.playerBody.map((x) => x.split("/").slice(1));
-  let playerXs = playerIds.map((x) => x[0]);
-  let playerYs = playerIds.map((x) => x[1]);
-  let appleX = randNum(x);
-  let appleY = randNum(y);
-  while (playerXs.includes(appleX)) {
-    appleX = randNum(x);
-  }
-  while (playerYs.includes(appleY)) {
-    appleY = randNum(y);
-  }
-  let appleId = `cell/${appleX}/${appleY}`;
-  return appleId;
+  let playerIds = player.playerBody;
+  let appleId = `cell/${randNum(x)}/${randNum(y)}`;
   
+  while (playerIds.includes(appleId)) {
+    appleId = `cell/${randNum(x)}/${randNum(y)}`;
+  }
+  return appleId;
 }
 
-export { createBoard, getCell, getCellNeighbors, boardCenterId, isValidCell, newApple };
+export { createBoard, getCell, boardCenterId, isValidCell, newApple };
