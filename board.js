@@ -12,6 +12,7 @@ function createBoard(x, y) {
 	let boardSize = x * y;
 
 	let gameContainer = document.getElementById("game-container");
+  gameContainer.innerHTML = "";
 	gameContainer.style.gridTemplateRows = "1fr ".repeat(x);
 	gameContainer.style.gridTemplateColumns = "1fr ".repeat(y);
 
