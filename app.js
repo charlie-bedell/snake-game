@@ -1,11 +1,22 @@
 import { createBoard, boardCenterId } from "./board.js";
 import { gameLoop } from "./game_logic.js";
+import { getRootStyle } from "./util.js";
 
-
-let HEIGHT = 20; // x or row
-let WIDTH = 20;  // y or column
+let HEIGHT = 21; // x or row
+let WIDTH = 21;  // y or column
 let TICKSPEED = 120;
 
+function setBoardSize(event) {
+  HEIGHT = Number(event.target.value);
+  WIDTH = Number(event.target.value);
+  createBoard(HEIGHT, WIDTH);
+}
+
+function setTickSpeed(event) {
+  console.log(TICKSPEED);
+  TICKSPEED = Number(event.target.value);
+  console.log(TICKSPEED);
+}
 
 function colorButton(button, color) {
   button.style.backgroundColor = color;
@@ -19,16 +30,15 @@ function colorButtonClass(classString, color) {
 }
 
 function handleSizeChange(event) {
-  console.log(event.target.className);
-  colorButtonClass(event.target.className, "");
-  colorButton(event.target, "#47aa46");
+  colorButtonClass(event.target.className, getRootStyle("--button-color"));
+  colorButton(event.target, getRootStyle("--button-highlight"));
   setBoardSize(event);
 }
 
-function setBoardSize(event) {
-  HEIGHT = Number(event.target.value);
-  WIDTH = Number(event.target.value);
-  createBoard(HEIGHT, WIDTH);
+function handleTickSpeedChange(event) {
+  colorButtonClass(event.target.className, getRootStyle("--button-color"));
+  colorButton(event.target, getRootStyle("--button-highlight"));
+  setTickSpeed(event);
 }
 
 function startGame(event) {
@@ -36,16 +46,22 @@ function startGame(event) {
 }
 
 createBoard(HEIGHT, WIDTH);
-
 let startButton = document.getElementById("start-button");
 let smallbtn = document.getElementById("small");
 let medbtn = document.getElementById("medium");
 let largebtn = document.getElementById("large");
 
+let slowbtn = document.getElementById("slow");
+let fastbtn = document.getElementById("fast");
+let fasterbtn = document.getElementById("faster");
 
 smallbtn.addEventListener("click", handleSizeChange);
 medbtn.addEventListener("click", handleSizeChange);
 largebtn.addEventListener("click", handleSizeChange);
+
+slowbtn.addEventListener("click", handleTickSpeedChange);
+fastbtn.addEventListener("click", handleTickSpeedChange);
+fasterbtn.addEventListener("click", handleTickSpeedChange);
 
 startButton.addEventListener("click", startGame);
 
