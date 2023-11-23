@@ -1,6 +1,6 @@
 import { Player } from "./player.js";
 import { newApple } from "./board.js";
-import { draw } from "./util.js";
+import { draw, getRootStyle } from "./util.js";
 
 let DIRECTION = "w";
 
@@ -21,13 +21,15 @@ document.addEventListener("keydown", (event) => {
 
 function drawPlayer(player) {
 	redrawBoard();
-	player.playerBody.forEach((x) => document.getElementById(x).style.backgroundColor = "green");
+	player.playerBody.forEach((x) => document.getElementById(x).style
+                            .backgroundColor = getRootStyle("--snake-color"));
 }
 
 function redrawBoard() {
 	let gameContainer = document.getElementById("game-container");
 	let cellIds = Array.from(gameContainer.children).map((x) => x.id);
-	cellIds.forEach((x) => document.getElementById(x).style.backgroundColor = "white");
+	cellIds.forEach((x) => document.getElementById(x).style
+                  .backgroundColor = getRootStyle("--background-color"));
 }
 
 function sleep(ms) {
@@ -70,7 +72,7 @@ async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
     }
     
 		drawPlayer(player);
-    draw(apple, "orange");
+    draw(apple, getRootStyle("--apple-color"));
 		await sleep(tickSpeed);
 	}
 	console.log("GAME OVER");
