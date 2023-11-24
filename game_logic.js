@@ -58,6 +58,7 @@ function gameOver() {
     buttons[i].disabled = false;
   }
   startButton.innerText = "Retry?";
+  DIRECTION = "w";
 }
 
 async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
