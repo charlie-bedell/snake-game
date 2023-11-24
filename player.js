@@ -41,7 +41,6 @@ class Player {
 
   grow() {
     this.playerLength++;
-    // document.getElementById(); TODO update score
   }
 }
 

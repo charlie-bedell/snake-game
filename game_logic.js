@@ -29,7 +29,7 @@ function redrawBoard() {
 	let gameContainer = document.getElementById("game-container");
 	let cellIds = Array.from(gameContainer.children).map((x) => x.id);
 	cellIds.forEach((x) => document.getElementById(x).style
-                  .backgroundColor = getRootStyle("--background-color"));
+                  .backgroundColor = getRootStyle("--game-background-color"));
 }
 
 function sleep(ms) {
@@ -50,7 +50,15 @@ function isOutofBounds(HEIGHT, WIDTH, player) {
 	}
 }
 
-
+function gameOver() {
+  document.getElementById("game-over-text").classList.remove("hidden");
+  let startButton = document.getElementById("start-button");
+  let buttons = document.getElementsByTagName("button");
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = false;
+  }
+  startButton.innerText = "Retry?";
+}
 
 async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
 	let playerLost = false;
@@ -75,7 +83,7 @@ async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
     draw(apple, getRootStyle("--apple-color"));
 		await sleep(tickSpeed);
 	}
-	console.log("GAME OVER");
+	gameOver();
 }
 
 export { drawPlayer, redrawBoard, gameLoop };

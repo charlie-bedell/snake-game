@@ -1,9 +1,19 @@
 :root {
+		--button-color: rgb(241, 233, 218);
+		--button-highlight: rgb(140, 240, 127);
+		--background-color: rgb(55, 99, 147);
+		--game-background-color: rgb(91, 141, 194);
+		--snake-color: rgb(43, 192, 22);
+		--apple-color: rgb(140, 85, 178);
+}
+
+colors {
 		--button-color: #b6b78d;
 		--button-highlight: #CBD578;
 		--background-color: #CCB9AE;
+		--game-background-color: #E0CDC3;
 		--snake-color: #6B8E23;
-		--apple-color: #FFA07A;
+		--apple-color: #fc8353;
 }
 
 html {
@@ -14,23 +24,28 @@ html {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		background-color: var(--background-color);
 		
 }
+
+#score-counter {
+		margin-left: 8px;
+}
+
 #game-container {
 		display: grid;
 		flex-direction: column;
-		gap: 0px;		
-		border: 1px solid grey;
+		gap: 1px;
+		background-color: var(--game-background-color);
 }
 .cell {
-		background-color: var(--background-color);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		font-size: 10px;
 		width: 20px;
 		height: 20px;
-		filter: brightness(110%);
+		background-color: var(--game-background-color);
 }
 
 .inline {
@@ -54,17 +69,47 @@ button.settings {
 		display: flex;
 }
 
+button {
+		background-color: var(--button-color);
+		transition: background-color 0.3s ease;
+		border: none;
+}
+
 button.settings {
 		justify-content: center;
 		margin-bottom: 4px;
 		margin-right: 4px;
-		border: none;
 		width: 70px;
 		height: 20px;
-		background-color: var(--button-color);
-		transition: background-color 0.3s ease;
 }
 
 button:hover {
 		filter: brightness(85%);
+}
+
+.overlay-container {
+		position: relative;
+}
+
+.text-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		
+}
+
+.text-overlay h2 {
+		margin: 0;
+		font-size: 90px;
+}
+
+.hidden {
+		display: none;
 }

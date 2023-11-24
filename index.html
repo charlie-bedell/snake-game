@@ -16,8 +16,13 @@
 		<div id="main-container">
 			<h1 id="title">Snake</h1>
 			<div class="inline"><h2>Score:</h2><h2 id="score-counter">0</h2></div>
-			<div id="game-container">
+			<div class="overlay-container">
+				<div id="game-container"></div>
+				<div class="text-overlay">
+					<h2 id="game-over-text" class="hidden">GAME OVER</h2>
+				</div>
 			</div>
+			
 			<button id="start-button">Start Game</button>
 			<div class="settings">
 				<div class="size-buttons">
@@ -26,9 +31,9 @@
 					<button id="large" value="31" class="size settings">Large</button>
 				</div>
 				<div class="speed-buttons">
-					<button id="slow" value="120" class="speed settings">Slow</button>
-					<button id="fast" value="100" class="speed settings">Fast</button>
-					<button id="faster" value="80" class="speed settings">Faster</button>
+					<button id="slow" value="100" class="speed settings">Slow</button>
+					<button id="fast" value="80" class="speed settings">Fast</button>
+					<button id="faster" value="50" class="speed settings">Faster</button>
 				</div>
 			</div>
 		</div>

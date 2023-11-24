@@ -4,7 +4,7 @@ import { getRootStyle } from "./util.js";
 
 let HEIGHT = 21; // x or row
 let WIDTH = 21;  // y or column
-let TICKSPEED = 120;
+let TICKSPEED = 80;
 
 function setBoardSize(event) {
   HEIGHT = Number(event.target.value);
@@ -13,9 +13,7 @@ function setBoardSize(event) {
 }
 
 function setTickSpeed(event) {
-  console.log(TICKSPEED);
   TICKSPEED = Number(event.target.value);
-  console.log(TICKSPEED);
 }
 
 function colorButton(button, color) {
@@ -42,10 +40,16 @@ function handleTickSpeedChange(event) {
 }
 
 function startGame(event) {
+  // event.target.disabled = true;
+  let buttons = document.getElementsByTagName("button");
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = true;
+  }
+  event.target.innerText = "Start Game";
+  document.getElementById("game-over-text").classList.add('hidden');
   gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
 }
 
-createBoard(HEIGHT, WIDTH);
 let startButton = document.getElementById("start-button");
 let smallbtn = document.getElementById("small");
 let medbtn = document.getElementById("medium");
@@ -65,3 +69,6 @@ fasterbtn.addEventListener("click", handleTickSpeedChange);
 
 startButton.addEventListener("click", startGame);
 
+createBoard(HEIGHT, WIDTH);
+colorButton(fastbtn, getRootStyle("--button-highlight"));
+colorButton(medbtn, getRootStyle("--button-highlight"));
