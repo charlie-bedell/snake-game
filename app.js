@@ -41,6 +41,11 @@ function handleTickSpeedChange(event) {
   setTickSpeed(event);
 }
 
+function toggleOptionsMenu(event) {
+  let menu = document.getElementsByClassName('settings-menu')[0];
+  menu.classList.toggle("fade-hide");
+}
+
 // lock player out of buttons to prevent game interruption
 // and start main game loop, also hides the GAME OVER text if a game over
 // was triggered
@@ -62,15 +67,18 @@ let largebtn = document.getElementById("large");
 let slowbtn = document.getElementById("slow");
 let fastbtn = document.getElementById("fast");
 let fasterbtn = document.getElementById("faster");
+let optionsbtn = document.getElementById("options");
 
 // add listeners, pulls values from buttons to change the size of
 // the board and how fast the snake moves
+optionsbtn.addEventListener("click", toggleOptionsMenu);
 smallbtn.addEventListener("click", handleSizeChange);
 medbtn.addEventListener("click", handleSizeChange);
 largebtn.addEventListener("click", handleSizeChange);
 slowbtn.addEventListener("click", handleTickSpeedChange);
 fastbtn.addEventListener("click", handleTickSpeedChange);
 fasterbtn.addEventListener("click", handleTickSpeedChange);
+
 
 startButton.addEventListener("click", startGame);
 
