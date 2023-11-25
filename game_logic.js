@@ -2,8 +2,10 @@ import { Player } from "./player.js";
 import { newApple } from "./board.js";
 import { draw, getRootStyle } from "./util.js";
 
-let DIRECTION = "w";
 
+// handles input and manages players direction
+let DIRECTION_QUEUE = ['w'];
+let LAST_DIRECTION = 'w';
 document.addEventListener("keydown", (event) => {
 	if (['w', 'a', 's', 'd'].includes(event.key)) {
 		let newDirection = event.key;
@@ -13,23 +15,27 @@ document.addEventListener("keydown", (event) => {
 			"d": "a",
 			"a": "d"
 		};
-		if (newDirection !== oppositeDirections[DIRECTION]) {
-			DIRECTION = newDirection;
-		}
+    if ((((DIRECTION_QUEUE.length == 0) &&
+         (oppositeDirections[LAST_DIRECTION] !== newDirection)))
+      || // ----------------------------OR----------------------------
+        ((DIRECTION_QUEUE.length > 0) &&
+         (oppositeDirections[DIRECTION_QUEUE[DIRECTION_QUEUE.length-1]] !== newDirection))) {
+      DIRECTION_QUEUE.push(newDirection);
+    }
 	}
 });
 
 function drawPlayer(player) {
 	redrawBoard();
 	player.playerBody.forEach((x) => document.getElementById(x).style
-                            .backgroundColor = getRootStyle("--snake-color"));
+		.backgroundColor = getRootStyle("--snake-color"));
 }
 
 function redrawBoard() {
 	let gameContainer = document.getElementById("game-container");
 	let cellIds = Array.from(gameContainer.children).map((x) => x.id);
 	cellIds.forEach((x) => document.getElementById(x).style
-                  .backgroundColor = getRootStyle("--game-background-color"));
+		.backgroundColor = getRootStyle("--game-background-color"));
 }
 
 function sleep(ms) {
@@ -53,38 +59,44 @@ function isOutofBounds(HEIGHT, WIDTH, player) {
 
 // renables buttons, sets player direction to north
 function gameOver() {
-  document.getElementById("game-over-text").classList.remove("hidden");
-  let startButton = document.getElementById("start-button");
-  let buttons = document.getElementsByTagName("button");
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].disabled = false;
-  }
-  startButton.innerText = "Retry?";
-  DIRECTION = "w";
+	document.getElementById("game-over-text").classList.remove("hidden");
+	let startButton = document.getElementById("start-button");
+	let buttons = document.getElementsByTagName("button");
+	for (let i = 0; i < buttons.length; i++) {
+		buttons[i].disabled = false;
+	}
+	startButton.innerText = "Retry?";
 }
 
 // handles the main game loop
 // score, draw, apple
 async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
 	let player = new Player(boardCenter);
-  let apple = newApple(player, HEIGHT, WIDTH);
+	let apple = newApple(player, HEIGHT, WIDTH);
+  LAST_DIRECTION = 'w';
+	DIRECTION_QUEUE = ['w'];
 	drawPlayer(player);
 	while (true) {
+		if (DIRECTION_QUEUE.length > 0) {
+			LAST_DIRECTION = DIRECTION_QUEUE[0];
+			player.movePlayer(DIRECTION_QUEUE.shift());
+		} else {
+			player.movePlayer(LAST_DIRECTION);
+		}
 
-    player.movePlayer(DIRECTION);
 
-    if (isOutofBounds(HEIGHT, WIDTH, player)) {
+		if (isOutofBounds(HEIGHT, WIDTH, player)) {
 			break;
 		}
 
-    if (player.playerBody[0] == apple) {
-      player.grow();
-      apple = newApple(player, HEIGHT, WIDTH);
-      document.getElementById("score-counter").innerText = String(player.playerLength - 1);
-    }
-    
+		if (player.playerBody[0] == apple) {
+			player.grow();
+			apple = newApple(player, HEIGHT, WIDTH);
+			document.getElementById("score-counter").innerText = String(player.playerLength - 1);
+		}
+
 		drawPlayer(player);
-    draw(apple, getRootStyle("--apple-color"));
+		draw(apple, getRootStyle("--apple-color"));
 		await sleep(tickSpeed);
 	}
 	gameOver();
