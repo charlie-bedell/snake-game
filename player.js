@@ -39,8 +39,8 @@ class Player {
     }
 	}
 
-  grow() {
-    this.playerLength++;
+ grow() {
+    this.playerLength += 3;
   }
 }
 

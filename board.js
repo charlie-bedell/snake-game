@@ -1,13 +1,15 @@
 import { randNum } from './util.js';
 
+// creates a new cell with the given id in the board
 function createCell(id) {
 	let cell = document.createElement("div");
 	cell.className = "cell";
 	cell.id = id;
-	// cell.innerText = id;
 	return cell;
 }
 
+// takes x/y values and creates a gameboard of cells,
+// will overwrite previous gameboard
 function createBoard(x, y) {
 	let boardSize = x * y;
 

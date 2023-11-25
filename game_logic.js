@@ -36,6 +36,7 @@ function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// checks if the player hits a side or itself
 function isOutofBounds(HEIGHT, WIDTH, player) {
 	let playerHead = player.playerBody[0];
 	let ids = playerHead.split("/").slice(1);
@@ -50,6 +51,7 @@ function isOutofBounds(HEIGHT, WIDTH, player) {
 	}
 }
 
+// renables buttons, sets player direction to north
 function gameOver() {
   document.getElementById("game-over-text").classList.remove("hidden");
   let startButton = document.getElementById("start-button");
@@ -61,8 +63,9 @@ function gameOver() {
   DIRECTION = "w";
 }
 
+// handles the main game loop
+// score, draw, apple
 async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
-	let playerLost = false;
 	let player = new Player(boardCenter);
   let apple = newApple(player, HEIGHT, WIDTH);
 	drawPlayer(player);
