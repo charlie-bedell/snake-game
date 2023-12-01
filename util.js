@@ -9,11 +9,24 @@ function getRootStyle(colorPropertyName) {
   return color;
 }
 
-function draw(cellId, color) {
-  // let cell = document.getElementById(cellId);
-  // cell.style.backgroundColor = color;
-  document.getElementById(cellId).style.backgroundColor = color;
+function randomFruit() {
+  let fruits = ['🍇','🍈','🍉','🍊','🍋','🍌','🍍','🥭','🍎','🍏','🍐','🍑','🍒','🍓','🫐','🥝','🍅','🫒','🥥'];
+  return fruits[randNum(fruits.length)];
 }
 
-export { randNum, draw, getRootStyle };
+function draw(cellId, color, isFruit=false) {
+  // let cell = document.getElementById(cellId);
+  // cell.style.backgroundColor = color;
+  let cell = document.getElementById(cellId);
+  if (isFruit) {
+    cell.textContent = color;
+    cell.style.zIndex = 9999;
+    
+  } else {
+    cell.style.backgroundColor = color;
+  }
+  
+}
+
+export { randNum, draw, getRootStyle, randomFruit };
 

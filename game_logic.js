@@ -1,6 +1,6 @@
 import { Player } from "./player.js";
-import { newApple } from "./board.js";
-import { draw, getRootStyle } from "./util.js";
+import { newFruit } from "./board.js";
+import { draw, getRootStyle, randomFruit } from "./util.js";
 
 
 // handles input and manages players direction
@@ -34,8 +34,12 @@ function drawPlayer(player) {
 function redrawBoard() {
 	let gameContainer = document.getElementById("game-container");
 	let cellIds = Array.from(gameContainer.children).map((x) => x.id);
-	cellIds.forEach((x) => document.getElementById(x).style
-		.backgroundColor = getRootStyle("--game-background-color"));
+	cellIds.forEach((x) => {
+    let cell = document.getElementById(x);
+    cell.style.backgroundColor = getRootStyle("--game-background-color");
+    cell.style.zIndex = 0;
+    cell.textContent = "";
+  });
 }
 
 function sleep(ms) {
@@ -72,7 +76,8 @@ function gameOver() {
 // score, draw, apple
 async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
 	let player = new Player(boardCenter);
-	let apple = newApple(player, HEIGHT, WIDTH);
+	let fruit = newFruit(player, HEIGHT, WIDTH);
+  let fruitEmoji = randomFruit();
   LAST_DIRECTION = 'w';
 	DIRECTION_QUEUE = ['w'];
 	drawPlayer(player);
@@ -83,20 +88,19 @@ async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
 		} else {
 			player.movePlayer(LAST_DIRECTION);
 		}
-
-
 		if (isOutofBounds(HEIGHT, WIDTH, player)) {
 			break;
 		}
 
-		if (player.playerBody[0] == apple) {
+		if (player.playerBody[0] == fruit) {
 			player.grow();
-			apple = newApple(player, HEIGHT, WIDTH);
+			fruit = newFruit(player, HEIGHT, WIDTH);
+      fruitEmoji = randomFruit();
 			document.getElementById("score-counter").innerText = String(player.playerLength - 1);
 		}
 
 		drawPlayer(player);
-		draw(apple, getRootStyle("--apple-color"));
+		draw(fruit, fruitEmoji, true);
 		await sleep(tickSpeed);
 	}
 	gameOver();

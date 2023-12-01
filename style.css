@@ -2,9 +2,18 @@
 		--button-color: rgb(241, 233, 218);
 		--button-highlight: rgb(140, 240, 127);
 		--background-color: rgb(55, 99, 147);
-		--game-background-color: rgb(91, 141, 194);
 		--snake-color: rgb(43, 192, 22);
 		--apple-color: rgb(140, 85, 178);
+		--game-background-color-red: 91;
+		--game-background-color-blue: 141;
+		--game-background-color-green: 194;
+		--game-background-color: rgb(var(--game-background-color-red),
+																 var(--game-background-color-blue),
+																 var(--game-background-color-green));
+		--dark-game-background-color: rgb(calc(var(--game-background-color-red) * 0.8),
+																			calc(var(--game-background-color-blue) * 0.8),
+																			calc(var(--game-background-color-green) * 0.8));
+		
 }
 
 html {
@@ -27,17 +36,17 @@ html {
 		display: grid;
 		flex-direction: column;
 		gap: 1px;
-		background-color: var(--game-background-color);
+		background-color: var(--dark-game-background-color);
+		
 }
 .cell {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 10px;
+		font-size: 30px;
 		width: 20px;
 		height: 20px;
 		background-color: var(--game-background-color);
-		
 }
 
 .inline {

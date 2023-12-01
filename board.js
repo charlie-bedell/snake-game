@@ -49,7 +49,7 @@ function isValidCell(id, x, y) {
 	}
 }
 
-function newApple(player,x,y) {
+function newFruit(player,x,y) {
   let playerIds = player.playerBody;
   let appleId = `cell/${randNum(x)}/${randNum(y)}`;
   
@@ -59,4 +59,4 @@ function newApple(player,x,y) {
   return appleId;
 }
 
-export { createBoard, getCell, boardCenterId, isValidCell, newApple };
+export { createBoard, getCell, boardCenterId, isValidCell, newFruit };
