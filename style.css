@@ -7,15 +7,6 @@
 		--apple-color: rgb(140, 85, 178);
 }
 
-colors {
-		--button-color: #b6b78d;
-		--button-highlight: #CBD578;
-		--background-color: #CCB9AE;
-		--game-background-color: #E0CDC3;
-		--snake-color: #6B8E23;
-		--apple-color: #fc8353;
-}
-
 html {
 		background-color: var(--background-color);
 }
@@ -46,6 +37,7 @@ html {
 		width: 20px;
 		height: 20px;
 		background-color: var(--game-background-color);
+		
 }
 
 .inline {
