@@ -59,31 +59,28 @@ function startGame(event) {
   gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
 }
 
+// handles the click event when selecting an option
+function handleOptions(event) {
+  let parentClassList = Array.from(event.target.parentNode.classList);
+  if (parentClassList.includes("size-buttons")) {
+    handleSizeChange(event);
+  } else if (parentClassList.includes("speed-buttons")) {
+    handleTickSpeedChange(event);
+  }
+}
+
 //  get buttons to change settings
 let startButton = document.getElementById("start-button");
-let smallbtn = document.getElementById("small");
-let medbtn = document.getElementById("medium");
-let largebtn = document.getElementById("large");
-let slowbtn = document.getElementById("slow");
-let fastbtn = document.getElementById("fast");
-let fasterbtn = document.getElementById("faster");
+let settingsMenu = document.getElementById("settings-menu");
 let optionsbtn = document.getElementById("options");
 
 // add listeners, pulls values from buttons to change the size of
 // the board and how fast the snake moves
 optionsbtn.addEventListener("click", toggleOptionsMenu);
-smallbtn.addEventListener("click", handleSizeChange);
-medbtn.addEventListener("click", handleSizeChange);
-largebtn.addEventListener("click", handleSizeChange);
-slowbtn.addEventListener("click", handleTickSpeedChange);
-fastbtn.addEventListener("click", handleTickSpeedChange);
-fasterbtn.addEventListener("click", handleTickSpeedChange);
-
-
+settingsMenu.addEventListener("click", handleOptions);
 startButton.addEventListener("click", startGame);
-
 // colors the buttons associated with the default values when the player
 // first loads the page
 createBoard(HEIGHT, WIDTH);
-colorButton(fastbtn, getRootStyle("--button-highlight"));
-colorButton(medbtn, getRootStyle("--button-highlight"));
+colorButton(document.getElementById('fast'), getRootStyle("--button-highlight"));
+colorButton(document.getElementById('medium'), getRootStyle("--button-highlight"));
