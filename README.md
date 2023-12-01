@@ -11,6 +11,10 @@
 - http-server (optional)
   - download with `npm install -g http-server`
 ## TODO
+### emre & greg suggestions
+- online, like snake.io
+- lookup how snake.io works
+- ask chatgpt what technologies would be needed for a snake game like snake.io
 ### docs
 - Finish documentation (inline and readme)
 - fill out readme according to template
