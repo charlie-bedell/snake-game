@@ -1,7 +1,10 @@
 class Player {
-	constructor(head) {
+  constructor(head) {
 		this.playerBody = [head];
 		this.playerLength = 1;
+    this.isAlive = true;
+    this.inGame = true;
+    this.firebaseId = null;
 	}
 
 	extractId(cellId) {
@@ -39,9 +42,11 @@ class Player {
     }
 	}
 
- grow() {
+  grow() {
     this.playerLength += 3;
   }
+
+
 }
 
 export { Player };
