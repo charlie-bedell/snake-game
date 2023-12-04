@@ -4,7 +4,7 @@ import { getRootStyle } from "./util.js";
 
 let HEIGHT = 21; // x or row
 let WIDTH = 21;  // y or column
-let TICKSPEED = 80;
+let TICKSPEED = 1200;
 
 
 function setBoardSize(event) {
@@ -69,7 +69,8 @@ function handleOptions(event) {
   }
 }
 
-//  get buttons to change settings
+function main() {
+  //  get buttons to change settings
 let startButton = document.getElementById("start-button");
 let settingsMenu = document.getElementById("settings-menu");
 let optionsbtn = document.getElementById("options");
@@ -82,5 +83,8 @@ startButton.addEventListener("click", startGame);
 // colors the buttons associated with the default values when the player
 // first loads the page
 createBoard(HEIGHT, WIDTH);
-colorButton(document.getElementById('fast'), getRootStyle("--button-highlight"));
+colorButton(document.getElementById('turtle'), getRootStyle("--button-highlight"));
 colorButton(document.getElementById('medium'), getRootStyle("--button-highlight"));
+}
+
+main();
