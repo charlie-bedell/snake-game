@@ -41,8 +41,6 @@ async function getOtherSnakeLocs(player) {
   // gets the body of each alive snake in firestore
   let playerId = player.firebaseId;
   let snakes = await getAllSnakes();
-  console.log(playerId);
-  console.log(snakes);
   let locations = Object.values(snakes)
       .filter((x) => playerId !== x.firebaseId)
       .map((x) => x.playerBody);
