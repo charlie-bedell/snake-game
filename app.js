@@ -1,10 +1,10 @@
 import { createBoard, boardCenterId } from "./board.js";
-import { gameLoop } from "./game_logic.js";
+import { gameLoop, multiplayerGameLoop } from "./game_logic.js";
 import { getRootStyle } from "./util.js";
 
 let HEIGHT = 21; // x or row
 let WIDTH = 21;  // y or column
-let TICKSPEED = 1200;
+let TICKSPEED = 200;
 
 
 function setBoardSize(event) {
@@ -56,7 +56,8 @@ function startGame(event) {
   }
   event.target.innerText = "Start Game";
   document.getElementById("game-over-text").classList.add('hidden');
-  gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
+  // gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
+  multiplayerGameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
 }
 
 // handles the click event when selecting an option

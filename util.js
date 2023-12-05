@@ -1,3 +1,18 @@
+// import { fs } from 'fs';
+
+// function parseEnvFile(filepath) {
+//   const content = fs.readFileSync(filepath, 'utf8');
+//   const lines = content.split('/n');
+//   const envVariables = {};
+//   lines.forEach((line) => {
+//     const [key, value] = line.split('=');
+//     if (key && value) {
+//       envVariables[key.trim()] = value.trim();
+//     }
+//   });
+//   return envVariables;
+// }
+
 function randNum(x) {
   // returns a number between 0 and x
   return Math.floor(Math.random() * x);
