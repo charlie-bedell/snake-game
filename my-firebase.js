@@ -4,7 +4,7 @@ import { Player } from './player.js';
 
 
 // CONFIG
-
+const firebaseConfig = {};
 // CONFIG
 
 // Initialize Firebase
