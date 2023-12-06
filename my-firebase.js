@@ -44,14 +44,12 @@ async function updateSnake(player) {
   });
 }
 
-async function getOtherSnakeLocs(player) {
+async function getOtherSnakes(player) {
   // gets the body of each alive snake in firestore
   let playerId = player.firebaseId;
   let snakes = await getAllSnakes();
-  let locations = Object.values(snakes)
-      .filter((x) => playerId !== x.firebaseId)
-      .map((x) => x.playerBody);
-  return locations;
+  snakes = Object.values(snakes).filter((x) => playerId !== x.firebaseId);
+  return snakes;
 }
 
 async function addSnake(player) {
@@ -79,5 +77,4 @@ async function removeSnake(playerId) {
 
 
 
-
-export { getAllSnakes, getSnake, updateSnake, getOtherSnakeLocs, addSnake, removeSnake }
+export { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake }

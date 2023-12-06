@@ -1,7 +1,7 @@
 import { Player } from "./player.js";
 import { newFruit } from "./board.js";
-import { draw, drawCellArray, getRootStyle, randomFruit } from "./util.js";
-import { getAllSnakes, getSnake, updateSnake, getOtherSnakeLocs, addSnake, removeSnake } from './my-firebase.js';
+import { draw, drawCellArray, getRootStyle, randomFruit, randColor } from "./util.js";
+import { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake } from './my-firebase.js';
 
 // handles input and manages players direction
 let DIRECTION_QUEUE = ['w'];
@@ -34,11 +34,15 @@ function drawPlayer(player) {
 		                        .backgroundColor = getRootStyle("--snake-color"));
 }
 
-async function drawOtherPlayers(player) {
-  let snakeLocs = await getOtherSnakeLocs(player);
-  let allSnakeLocs = snakeLocs.flat(Infinity);
-  allSnakeLocs.forEach((x) => document.getElementById(x).style
-                       .backgroundColor = getRootStyle("--other-snake-color"));
+async function drawOtherPlayers(player, otherSnakes=null) {
+  if (otherSnakes == null) {
+    otherSnakes = await getOtherSnakes(player);
+  }
+  for (let i = 0; i < otherSnakes.length; i++) {
+    let snake = otherSnakes[i];
+    snake.playerBody.forEach((x) => document.getElementById(x).style
+                             .backgroundColor = snake.color);
+  };
 }
 
 function redrawBoard() {
@@ -62,7 +66,8 @@ function multiplayerCollision(player, otherPlayers) {
     return false;
   }
   let playerHead = player.playerBody[0];
-  if (otherPlayers.includes(playerHead)) {
+  let otherPlayerBodies = otherPlayers.map((x) => x.playerBody).flat(Infinity);
+  if (otherPlayerBodies.includes(playerHead)) {
     return true;
   } else {
     return false;
@@ -98,7 +103,7 @@ function gameOver() {
 async function multiplayerDrawPhase(player, otherSnakes, fruit, fruitEmoji) {
   updateSnake(player);
   redrawBoard();
-  drawCellArray(otherSnakes, getRootStyle('--other-snake-color'));
+  drawOtherPlayers(player, otherSnakes);
   drawPlayer(player);
   draw(fruit, fruitEmoji, true);
 }
@@ -139,7 +144,7 @@ async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
 }
 
 async function multiplayerGameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
-  let player = new Player(boardCenter);
+  let player = new Player(boardCenter, randColor());
   await addSnake(player);
 	let fruit = newFruit(player, HEIGHT, WIDTH);
   let fruitEmoji = randomFruit();
@@ -165,10 +170,8 @@ async function multiplayerGameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
       fruitEmoji = randomFruit();
 			document.getElementById("score-counter").innerText = String(player.playerLength - 1);
 		}
-    let otherPlayers = await getOtherSnakeLocs(player);
-    otherPlayers = otherPlayers.flat(Infinity);
+    let otherPlayers = await getOtherSnakes(player);
     await multiplayerDrawPhase(player, otherPlayers, fruit, fruitEmoji);
-
     if (multiplayerCollision(player, otherPlayers)) {
       break;
     }

@@ -3,6 +3,12 @@ function randNum(x) {
   return Math.floor(Math.random() * x);
 }
 
+function randColor() {
+  // use only with css styling the multiplayer snakes
+  let colors = ['Aqua', 'Aquamarine', 'AliceBlue', 'BlueViolet', 'Coral', 'Chocolate', 'Gold'];
+  return colors[randNum(colors.length-1)];
+}
+
 function getRootStyle(colorPropertyName) {
   const rootStyles = getComputedStyle(document.documentElement);
   const color = rootStyles.getPropertyValue(colorPropertyName);
@@ -31,5 +37,5 @@ function drawCellArray(cellArray, color) {
   cellArray.forEach((cell) => draw(cell, color));
 }
 
-export { randNum, draw, drawCellArray, getRootStyle, randomFruit };
+export { randNum, draw, drawCellArray, getRootStyle, randomFruit, randColor };
 

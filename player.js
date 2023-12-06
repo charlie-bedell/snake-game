@@ -1,11 +1,12 @@
 class Player {
-  constructor(head) {
+  constructor(head, color='red') {
 		this.playerBody = [head];
 		this.playerLength = 1;
     this.isAlive = true;
     this.inGame = true;
     this.firebaseId = null;
     this.playerAge = 0;
+    this.color = color;
 	}
 
 	extractId(cellId) {
