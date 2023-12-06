@@ -25,8 +25,11 @@ function draw(cellId, color, isFruit=false) {
   } else {
     cell.style.backgroundColor = color;
   }
-  
 }
 
-export { randNum, draw, getRootStyle, randomFruit };
+function drawCellArray(cellArray, color) {
+  cellArray.forEach((cell) => draw(cell, color));
+}
+
+export { randNum, draw, drawCellArray, getRootStyle, randomFruit };
 
