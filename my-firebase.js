@@ -5,12 +5,12 @@ import { Player } from './player.js';
 
 // CONFIG
 const firebaseConfig = {
-	apiKey: process.env.API_KEY,
-	authDomain: process.env.AUTH_DOMAIN,
-	projectId: process.env.PROJECT_ID,
-	storageBucket: process.env.STORAGE_BUCKET,
-	messagingSenderId: process.env.MESSAGING_SENDER_ID,
-	appId: process.env.APP_ID
+	apiKey: Netlify.env.get(API_KEY),
+	authDomain: Netlify.env.get(AUTH_DOMAIN),
+	projectId: Netlify.env.get(PROJECT_ID),
+	storageBucket: Netlify.env.get(STORAGE_BUCKET),
+	messagingSenderId: Netlify.env.get(MESSAGING_SENDER_ID),
+	appId: Netlify.env.get(APP_ID)
 };
 
 // CONFIG
