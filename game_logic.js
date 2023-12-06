@@ -57,6 +57,10 @@ function sleep(ms) {
 }
 
 function multiplayerCollision(player, otherPlayers) {
+  // grace period of X ticks
+  if (player.playerAge < 10) {
+    return false;
+  }
   let playerHead = player.playerBody[0];
   if (otherPlayers.includes(playerHead)) {
     return true;

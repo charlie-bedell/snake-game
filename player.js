@@ -5,6 +5,7 @@ class Player {
     this.isAlive = true;
     this.inGame = true;
     this.firebaseId = null;
+    this.playerAge = 0;
 	}
 
 	extractId(cellId) {
@@ -40,6 +41,7 @@ class Player {
     } else {
       this.playerBody.unshift(playerMove);
     }
+    this.playerAge++;
 	}
 
   grow() {
