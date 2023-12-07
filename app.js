@@ -84,7 +84,7 @@ startButton.addEventListener("click", startGame);
 // colors the buttons associated with the default values when the player
 // first loads the page
 createBoard(HEIGHT, WIDTH);
-colorButton(document.getElementById('turtle'), getRootStyle("--button-highlight"));
+colorButton(document.getElementById('slow'), getRootStyle("--button-highlight"));
 colorButton(document.getElementById('medium'), getRootStyle("--button-highlight"));
 }
 

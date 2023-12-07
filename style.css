@@ -13,8 +13,7 @@
 																 var(--game-background-color-green));
 		--dark-game-background-color: rgb(calc(var(--game-background-color-red) * 0.8),
 																			calc(var(--game-background-color-blue) * 0.8),
-																			calc(var(--game-background-color-green) * 0.8));
-		
+																			calc(var(--game-background-color-green) * 0.8));		
 }
 
 html {
