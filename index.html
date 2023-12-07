@@ -16,10 +16,22 @@
   <body>
 		<div id="main-container">
 			<div class="inline"><h2>Score:</h2><h2 id="score-counter">0</h2></div>
-			<div class="overlay-container">
-				<div id="game-container"></div>
-				<div class="text-overlay"><h2 id="game-over-text" class="hidden">GAME OVER</h2></div>
-			</div>			
+			<div class="game-and-score-container">
+				<div class="overlay-container">
+					<div id="game-container"></div>
+					<div class="text-overlay"><h2 id="game-over-text" class="hidden">GAME OVER</h2></div>
+				</div>
+				<div class="highscores">
+					<h1 id="highscore-title">HighScores</h1>
+					<ol id="highscores-list">
+						<li>Josh: 50</li>
+						<li>Wyatt: 48</li>
+						<li>Charlie: 22</li>
+						<li>Murad: 12</li>
+						<li>Spiderman: 2</li>
+					</ol>
+				</div>
+			</div>
 			<div class="container">
 				<div id="game-start-buttons">
 					<button class="start-button" id="singleplayer-button">Singleplayer</button>

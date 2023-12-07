@@ -5,6 +5,7 @@ import { getRootStyle } from "./util.js";
 let HEIGHT = 21; // x or row
 let WIDTH = 21;  // y or column
 let TICKSPEED = 200;
+let PLAYERNAME = "";
 
 
 function setBoardSize(event) {

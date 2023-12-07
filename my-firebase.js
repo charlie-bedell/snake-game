@@ -14,11 +14,13 @@ const firebaseConfig = {
 
 // CONFIG
 
+
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const snakesRef = collection(db, 'snakes');
-
+const highscoresRef = collection(db, 'highscores');
 
 async function getAllSnakes() {
   let snakes = {};
@@ -40,7 +42,8 @@ async function updateSnake(player) {
     playerLength: player.playerLength,
     isAlive: player.isAlive,
     inGame: player.inGame,
-    firebaseId: player.firebaseId
+    firebaseId: player.firebaseId,
+    name: player.name
   });
 }
 
@@ -62,7 +65,8 @@ async function addSnake(player) {
     playerLength: player.playerLength,
     isAlive: player.isAlive,
     inGame: player.inGame,
-    firebaseId: player.firebaseId
+    firebaseId: player.firebaseId,
+    name: player.name
   });
 }
 
@@ -74,7 +78,44 @@ async function removeSnake(playerId) {
   });
 }
 
+async function getScores() {
+  let querySnapshot  = await getDocs(highscoresRef);
+  let scores = {};
+  querySnapshot.forEach((x) => scores[x.id] = x.data()['score']);
+  return scores;
+}
 
+async function getScore(name) {
+  let score = await getDoc(doc(highscoresRef, name));
+  score = score.data()['score'];
+  return score;
+}
 
+async function removeScore(name) {
+  await deleteDoc(doc(highscoresRef, name));
+}
 
-export { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake }
+async function addScore(name, score) {
+  await setDoc(doc(highscoresRef, name), {score: score});
+}
+
+async function onlyKeepScoreTop(n) {
+  let scores = await getScores();
+  scores = Object.entries(scores);
+  scores = scores.sort((a,b) => b[1] - a[1]);
+  let restScores = scores.slice(n);
+  restScores.forEach((x) => removeScore(x[0]));
+}
+
+async function updateScore(name, score) { 
+  let scores = getScores();
+  if (!Object.keys(scores).includes(name)) {
+    addScore(name,score);
+  } else {
+    let maxScore = Math.max(scores[name][score], score);
+    await setDoc(doc(highscoresRef, name), {score: maxScore});
+  }
+}
+
+export { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake, getScores, getScore, removeScore, addScore, updateScore, onlyKeepScoreTop }
+

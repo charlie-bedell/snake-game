@@ -37,8 +37,14 @@ html {
 		flex-direction: column;
 		gap: 1px;
 		background-color: var(--dark-game-background-color);
-		
 }
+
+.game-and-score-container {
+		display: flex;
+}
+
+
+
 .cell {
 		display: flex;
 		justify-content: center;
@@ -93,6 +99,7 @@ button:hover {
 
 .overlay-container {
 		position: relative;
+		margin-left: 175px
 }
 
 .text-overlay {
@@ -107,6 +114,25 @@ button:hover {
 		align-items: center;
 		text-align: center;
 		
+}
+
+.highscores {
+		margin-left: 18px;
+		
+}
+
+#highscore-title {
+		margin-top: 0;
+		margin-bottom: 0.1em;
+}
+
+#highscores-list {
+		margin: 0;
+		padding-left: 1em;
+}
+
+#highscores-list li {
+		margin-bottom: 1em;
 }
 
 .text-overlay h2 {
