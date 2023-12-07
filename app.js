@@ -2,6 +2,7 @@ import { createBoard, boardCenterId } from "./board.js";
 import { gameLoop } from "./game_logic.js";
 import { getRootStyle } from "./util.js";
 
+
 let HEIGHT = 21; // x or row
 let WIDTH = 21;  // y or column
 let TICKSPEED = 80;
