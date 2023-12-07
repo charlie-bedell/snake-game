@@ -51,13 +51,17 @@ function toggleOptionsMenu(event) {
 // was triggered
 function startGame(event) {
   let buttons = document.getElementsByTagName("button");
+  let targetId = event.target.id;
+
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].disabled = true;
   }
-  event.target.innerText = "Start Game";
   document.getElementById("game-over-text").classList.add('hidden');
-  // gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
-  multiplayerGameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
+  if (targetId === 'singleplayer-button') {
+    gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
+  } else if (targetId === 'multiplayer-button') {
+    multiplayerGameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
+  }
 }
 
 // handles the click event when selecting an option
@@ -72,20 +76,22 @@ function handleOptions(event) {
 
 function main() {
   //  get buttons to change settings
-let startButton = document.getElementById("start-button");
-let settingsMenu = document.getElementById("settings-menu");
-let optionsbtn = document.getElementById("options");
+  let startButtonContainer = document.getElementById("game-start-buttons");
+  let settingsMenu = document.getElementById("settings-menu");
+  let optionsbtn = document.getElementById("options");
 
-// add listeners, pulls values from buttons to change the size of
-// the board and how fast the snake moves
-optionsbtn.addEventListener("click", toggleOptionsMenu);
-settingsMenu.addEventListener("click", handleOptions);
-startButton.addEventListener("click", startGame);
-// colors the buttons associated with the default values when the player
-// first loads the page
-createBoard(HEIGHT, WIDTH);
-colorButton(document.getElementById('slow'), getRootStyle("--button-highlight"));
-colorButton(document.getElementById('medium'), getRootStyle("--button-highlight"));
+  // add listeners, pulls values from buttons to change the size of
+  // the board and how fast the snake moves
+  optionsbtn.addEventListener("click", toggleOptionsMenu);
+  settingsMenu.addEventListener("click", handleOptions);
+  startButtonContainer.addEventListener("click", startGame);
+
+
+  // colors the buttons associated with the default values when the player
+  // first loads the page
+  createBoard(HEIGHT, WIDTH);
+  colorButton(document.getElementById('slow'), getRootStyle("--button-highlight"));
+  colorButton(document.getElementById('medium'), getRootStyle("--button-highlight"));
 }
 
 main();

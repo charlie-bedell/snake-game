@@ -92,12 +92,10 @@ function isOutofBounds(HEIGHT, WIDTH, player) {
 // renables buttons, sets player direction to north
 function gameOver() {
 	document.getElementById("game-over-text").classList.remove("hidden");
-	let startButton = document.getElementById("start-button");
 	let buttons = document.getElementsByTagName("button");
 	for (let i = 0; i < buttons.length; i++) {
 		buttons[i].disabled = false;
 	}
-	startButton.innerText = "Retry?";
 }
 
 async function multiplayerDrawPhase(player, otherSnakes, fruit, fruitEmoji) {
