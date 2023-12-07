@@ -57,9 +57,19 @@ function startGame(event) {
     buttons[i].disabled = true;
   }
   document.getElementById("game-over-text").classList.add('hidden');
+
   if (targetId === 'singleplayer-button') {
     gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
+
   } else if (targetId === 'multiplayer-button') {
+    HEIGHT = 31;
+    WIDTH = 31;
+    TICKSPEED = 200;
+    colorButtonClass('size', getRootStyle('--button-color'));
+    colorButtonClass('speed', getRootStyle('--button-color'));
+    colorButton(document.getElementById('slow'), getRootStyle('--button-highlight'));
+    colorButton(document.getElementById('large'), getRootStyle('--button-highlight'));
+    createBoard(HEIGHT, WIDTH);
     multiplayerGameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
   }
 }
