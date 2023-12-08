@@ -10,6 +10,11 @@ let DIRECTION_QUEUE = ['w'];
 let LAST_DIRECTION = DIRECTION_QUEUE[0];
 
 function manageControls(event) {
+
+  if ((event.key == 'ArrowUp') || (event.key == 'ArrowDown')) {
+    event.preventDefault();
+  }
+  
   let key = event.key;
 
   switch (key) {
@@ -77,6 +82,7 @@ function redrawBoard() {
 function sleep(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
 
 function multiplayerCollision(player, otherPlayers) {
   // grace period of X ticks

@@ -22,17 +22,17 @@
 ![a view of the game](./assets/playScreen.png "gameplay")
 ## Timeline
 Do not neglect to plan, you will thank yourself later for being proactive!
-| Day       |   | Task                                                | Blockers                  | Notes/ Thoughts              |
-|-----------|---|-----------------------------------------------------|---------------------------|------------------------------|
-| Friday    |   | Create and present proposal                         |                           |                              |
-| Saturday  |   | research network/db options                         | idk what Im doing         |                              |
-| Sunday    |   | write getter/setters wrappers for db communications | still dunno what im doing |                              |
-| Monday    |   | build multiplayer game loop leveraging db           | breaking all my code      |                              |
-| Tuesday   |   | add player collision for multiplayer                |                           | was easier than expexted!    |
-| Wednesday |   | different player colors/alternate controls          |                           |                              |
-| Thursday  |   | highscores/names                                    |                           | way harder than expected     |
-| Friday    |   | sync fruits with                                    |                           | was way harder than expected |
-|           |   |                                                     |                           |                              |
+| Day       |   | Task                                                                | Blockers                    | Notes/ Thoughts                  |
+|-----------|---|---------------------------------------------------------------------|-----------------------------|----------------------------------|
+| Friday    |   | Create and present proposal                                         |                             |                                  |
+| Saturday  |   | research network/db options                                         | idk what Im doing           |                                  |
+| Sunday    |   | lose hope                                                           | still dunno what im doing   |                                  |
+| Monday    |   | start on firebase                                                   | breaking all my code        |                                  |
+| Tuesday   |   | create getters and setters and add player collision for multiplayer | slowly understanding fb api | collision = easy. get/set = hard |
+| Wednesday |   | different player colors/alternate controls                          |                             |                                  |
+| Thursday  |   | highscores/names                                                    |                             | harder than expected             |
+| Friday    |   | sync fruits with                                                    |                             | was way harder than expected     |
+|           |   |                                                                     |                             |                                  |
 
 ## attributions
 https://firebase.google.com/
