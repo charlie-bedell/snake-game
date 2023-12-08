@@ -49,7 +49,7 @@ document.addEventListener("keydown", manageControls);
 
 function drawPlayer(player) {
 	player.playerBody.forEach((x) => document.getElementById(x).style
-		                        .backgroundColor = getRootStyle("--snake-color"));
+		                        .backgroundColor = player.color);
 }
 
 async function drawOtherPlayers(player, otherSnakes=null) {
@@ -127,7 +127,7 @@ async function multiplayerDrawPhase(player, otherSnakes, fruit, fruitEmoji) {
 // handles the main game loop
 // score, draw, apple
 async function gameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
-	let player = new Player(boardCenter);
+	let player = new Player(boardCenter, randColor());
 	let fruit = newFruit(player, HEIGHT, WIDTH);
   let fruitEmoji = randomFruit();
 	DIRECTION_QUEUE = ['w'];
@@ -195,12 +195,13 @@ async function multiplayerGameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
 	}
   
   removeSnake(player.firebaseId);
-  
 	gameOver();
   console.log(player.name);
   console.log(player.playerLength);
   await updateScore(player.name, player.playerLength);
   await updateHighscores();
 }
+
+
 
 export { drawPlayer, redrawBoard, gameLoop, multiplayerGameLoop };

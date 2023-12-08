@@ -60,7 +60,9 @@ function startGame(event) {
 
   if (targetId === 'singleplayer-button') {
     gameLoop(TICKSPEED, HEIGHT, WIDTH, boardCenterId(HEIGHT, WIDTH));
-
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+      }
   } else if (targetId === 'multiplayer-button') {
     if (PLAYERNAME) {
       HEIGHT = 31;
@@ -109,7 +111,6 @@ function main() {
   settingsMenu.addEventListener("click", handleOptions);
   startButtonContainer.addEventListener("click", startGame);
   nameButton.addEventListener("click", changeName);
-
   // colors the buttons associated with the default values when the player
   // first loads the page
   createBoard(HEIGHT, WIDTH);

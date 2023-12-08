@@ -5,7 +5,7 @@ function randNum(x) {
 
 function randColor() {
   // use only with css styling the multiplayer snakes
-  let colors = ['Aqua', 'Aquamarine', 'AliceBlue', 'BlueViolet', 'Coral', 'Chocolate', 'Gold'];
+  let colors = ['Aqua', 'Aquamarine', 'AliceBlue', 'BlueViolet', 'Coral', 'Chocolate', 'chartreuse', 'deeppink', 'maroon', 'red', 'black', 'Gold'];
   return colors[randNum(colors.length-1)];
 }
 
