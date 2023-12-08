@@ -3,28 +3,42 @@
 - Javascript
 - HTML
 - CSS
-## Getting Started
-1. clone repo
-2. run http-server or whichever server program you prefer
-
+- firebase
 ## dependencies
 - http-server (optional)
   - download with `npm install -g http-server`
-## TODO
-### emre & greg suggestions
-- online, like snake.io
-- lookup how snake.io works
-- ask chatgpt what technologies would be needed for a snake game like snake.io
-### docs
-- Finish documentation (inline and readme)
-- fill out readme according to template
-- add images
-### features
-- add a highscore tracker (initial session only, will reset on refresh)
- - per game setting? (fast/slow snake...large/small gameboard)
- - cache results
- - https://blog.logrocket.com/storing-retrieving-javascript-objects-localstorage/
- - multiplayer??
- 
-#### bonus
+
+## Getting Started
+1. clone repo
+2. run http-server or whichever server program you prefer on any available port
+3. open localhost:PORT
+4. check the settings icon (gear icon next to game mode) to change singleplayer
+   settings
+5. Optional: multiplayer requires a firebase key and creation of document
+   templates
+6. Use WASD or arrowkeys to move, collect fruits to increase your size!
+
+## Wireframes
+![a view of the game](./assets/playScreen.png "gameplay")
+## Timeline
+Do not neglect to plan, you will thank yourself later for being proactive!
+| Day       |   | Task                                                | Blockers                  | Notes/ Thoughts              |
+|-----------|---|-----------------------------------------------------|---------------------------|------------------------------|
+| Friday    |   | Create and present proposal                         |                           |                              |
+| Saturday  |   | research network/db options                         | idk what Im doing         |                              |
+| Sunday    |   | write getter/setters wrappers for db communications | still dunno what im doing |                              |
+| Monday    |   | build multiplayer game loop leveraging db           | breaking all my code      |                              |
+| Tuesday   |   | add player collision for multiplayer                |                           | was easier than expexted!    |
+| Wednesday |   | different player colors/alternate controls          |                           |                              |
+| Thursday  |   | highscores/names                                    |                           | way harder than expected     |
+| Friday    |   | sync fruits with                                    |                           | was way harder than expected |
+|           |   |                                                     |                           |                              |
+
+## attributions
+https://firebase.google.com/
+
+## Icebox
 - localStorage highscore
+- build to configure firebase doucment creation
+- remove ghost snakes (games haunted)
+
