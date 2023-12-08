@@ -77,6 +77,7 @@ button.settings-menu {
 
 .settings-menu {
 		display: flex;
+		flex-direction: column;
 }
 
 button {
@@ -176,7 +177,7 @@ button:hover {
 div.settings-menu {
 		opacity: 1;
     visibility: visible;
-    height: 80px;
+    height: 120px;
     overflow: hidden;
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
@@ -186,4 +187,7 @@ div.settings-menu {
 		height: 0;
 }
 
-
+#size-speed-buttons {
+		display: flex;
+		justify-content: center;
+}

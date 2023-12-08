@@ -1,16 +1,34 @@
 import { Player } from "./player.js";
 import { newFruit } from "./board.js";
 import { draw, drawCellArray, getRootStyle, randomFruit, randColor } from "./util.js";
-import { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake } from './my-firebase.js';
+import { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake, updateScore } from './my-firebase.js';
+import { updateHighscores } from './highscores.js';
+
 
 // handles input and manages players direction
 let DIRECTION_QUEUE = ['w'];
 let LAST_DIRECTION = DIRECTION_QUEUE[0];
 
 function manageControls(event) {
+  let key = event.key;
+
+  switch (key) {
+  case "ArrowDown":
+    key = "s";
+    break;
+  case "ArrowUp":
+    key = 'w';
+    break;
+  case "ArrowRight":
+    key = 'd';
+    break;
+  case "ArrowLeft":
+    key = 'a';
+    break;
+  }
   
-  if (['w', 'a', 's','d'].includes(event.key)) {
-    let newDirection = event.key;
+  if (['w', 'a', 's','d'].includes(key)) {
+    let newDirection = key;
     let oppositeDirections = {
 			"w": "s",
 			"s": "w",
@@ -175,8 +193,14 @@ async function multiplayerGameLoop(tickSpeed, HEIGHT, WIDTH, boardCenter) {
     }
 		await sleep(tickSpeed);
 	}
+  
   removeSnake(player.firebaseId);
+  
 	gameOver();
+  console.log(player.name);
+  console.log(player.playerLength);
+  await updateScore(player.name, player.playerLength);
+  await updateHighscores();
 }
 
 export { drawPlayer, redrawBoard, gameLoop, multiplayerGameLoop };

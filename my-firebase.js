@@ -43,6 +43,7 @@ async function updateSnake(player) {
     isAlive: player.isAlive,
     inGame: player.inGame,
     firebaseId: player.firebaseId,
+    color: player.color,
     name: player.name
   });
 }
@@ -66,6 +67,7 @@ async function addSnake(player) {
     isAlive: player.isAlive,
     inGame: player.inGame,
     firebaseId: player.firebaseId,
+    color: player.color,
     name: player.name
   });
 }
@@ -102,7 +104,7 @@ async function addScore(name, score) {
 async function onlyKeepScoreTop(n) {
   let scores = await getScores();
   scores = Object.entries(scores);
-  scores = scores.sort((a,b) => b[1] - a[1]);
+  scores.sort((a,b) => b[1] - a[1]);
   let restScores = scores.slice(n);
   restScores.forEach((x) => removeScore(x[0]));
 }
@@ -117,5 +119,12 @@ async function updateScore(name, score) {
   }
 }
 
-export { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake, getScores, getScore, removeScore, addScore, updateScore, onlyKeepScoreTop }
+async function getTopNScores(n) {
+  let scores = await getScores();
+  scores = Object.entries(scores);
+  scores.sort((a,b) => b[1] - a[1]);
+  return scores.slice(0,n);
+}
+
+export { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake, getScores, getScore, removeScore, addScore, updateScore, onlyKeepScoreTop, getTopNScores }
 

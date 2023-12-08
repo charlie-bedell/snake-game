@@ -7,7 +7,9 @@ class Player {
     this.firebaseId = null;
     this.playerAge = 0;
     this.color = color;
+    this.name = document.getElementById('username').value;
 	}
+  
 
 	extractId(cellId) {
 		// returns the x and y values of a cellId
