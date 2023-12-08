@@ -1,4 +1,4 @@
-import { randNum } from './util.js';
+import { randNum, randomFruit, getFruit } from './util.js';
 
 // creates a new cell with the given id in the board
 function createCell(id) {

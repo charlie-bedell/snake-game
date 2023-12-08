@@ -20,6 +20,11 @@ function randomFruit() {
   return fruits[randNum(fruits.length)];
 }
 
+function getFruit(n) {
+  let fruits = ['🍇','🍈','🍉','🍊','🍋','🍌','🍍','🥭','🍎','🍏','🍐','🍑','🍒','🍓','🫐','🥝','🍅','🫒','🥥'];
+  return fruits[n];
+}
+
 function draw(cellId, color, isFruit=false) {
   // let cell = document.getElementById(cellId);
   // cell.style.backgroundColor = color;
@@ -37,5 +42,5 @@ function drawCellArray(cellArray, color) {
   cellArray.forEach((cell) => draw(cell, color));
 }
 
-export { randNum, draw, drawCellArray, getRootStyle, randomFruit, randColor };
+export { randNum, draw, drawCellArray, getRootStyle, randomFruit, randColor, getFruit };
 

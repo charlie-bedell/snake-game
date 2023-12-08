@@ -1,5 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
 import { getFirestore, collection, doc, getDocs, getDoc, setDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+import { randNum } from './util.js';
 import { Player } from './player.js';
 
 // CONFIG
@@ -21,6 +22,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const snakesRef = collection(db, 'snakes');
 const highscoresRef = collection(db, 'highscores');
+const fruitsRef = collection(db, 'fruits');
+
 
 async function getAllSnakes() {
   let snakes = {};
@@ -126,5 +129,22 @@ async function getTopNScores(n) {
   return scores.slice(0,n);
 }
 
-export { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake, getScores, getScore, removeScore, addScore, updateScore, onlyKeepScoreTop, getTopNScores }
+async function getFruits() {
+  let fbFruits = await getDoc(doc(fruitsRef, 'fruitDoc'));
+  fbFruits = fbFruits.data();
+  let fruitsArray = Object.keys(fbFruits).map((x) => fbFruits[x]);
+  return fruitsArray;
+}
+
+async function replaceFruit(oldFruit, newFruit) {
+  let fruits = await getFruits();
+  fruits = fruits.filter((x) => x[1] !== oldFruit);
+  fruits.push([randNum(19), newFruit]);
+  await setDoc(doc(fruitsRef, 'fruitDoc'), {
+    fruit1: fruits[0],
+    fruit2: fruits[1]
+  });
+}
+
+export { getAllSnakes, getSnake, updateSnake, getOtherSnakes, addSnake, removeSnake, getScores, getScore, removeScore, addScore, updateScore, onlyKeepScoreTop, getTopNScores, getFruits, replaceFruit }
 
